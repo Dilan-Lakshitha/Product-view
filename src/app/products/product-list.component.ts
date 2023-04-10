@@ -12,13 +12,15 @@ export class ProductListComponent implements OnInit{
     imageMargin: number=2;
     showImage: boolean=false;
     private _listFilter: string='';
-    get listFilter():string{
-        return this._listFilter;
-    }
     set listFilter(value:string){
         this._listFilter=value;
         console.log('In setter:',value);
+        this.filteredProducts = this.performFilter(value);
     }
+    get listFilter():string{
+        return this._listFilter;
+    }
+    filteredProducts: Iproduct[]=[];
     products : Iproduct[] =[
         {
             "productId": 1,
@@ -76,5 +78,10 @@ export class ProductListComponent implements OnInit{
     }
     ngOnInit(): void {
         console.log('In OnInit');
+    }
+    performFilter(filterBy:string):Iproduct[]{
+        filterBy=filterBy.toLocaleLowerCase();
+        return this.products.filter((product:Iproduct)=>
+        product.productName.toLocaleLowerCase().includes(filterBy));
     }
 }
