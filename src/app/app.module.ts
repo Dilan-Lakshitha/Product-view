@@ -8,6 +8,8 @@ import { ProductListComponent } from './products/product-list.component';
 import { FormsModule } from '@angular/forms';
 import { ConvertToSpacesPipe } from './shared/convert-to-spaces.pipe';
 import { StartComponent } from './shared/star.component';
+import { ProductsDetailComponent } from './products/products-detail.component';
+import { WelComeComponent } from './home/wel-come.component';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { StartComponent } from './shared/star.component';
     AppComponent,
     ProductListComponent,
     ConvertToSpacesPipe,
-    StartComponent
+    StartComponent,
+    ProductsDetailComponent,
+    WelComeComponent
   ],
   imports: [
     BrowserModule,

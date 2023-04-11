@@ -7,7 +7,7 @@ import { Observable, catchError, tap, throwError } from "rxjs";
     providedIn:'root'
 })
 export class ProductService{
-    private productUrl='api/products/products.json';
+    private productUrl ='api/products/products.Json';
 
     constructor(private http:HttpClient){}
 
@@ -17,7 +17,7 @@ export class ProductService{
             catchError(this.handleError)
         );
     }
-    private handleError(err: HttpErrorResponse){
+    private handleError(err: HttpErrorResponse):Observable<never>{
         // in a real world app, we may send the server to some remote logging infrastructure
         // instead of just logging it to the console
         let errorMessage = '';
