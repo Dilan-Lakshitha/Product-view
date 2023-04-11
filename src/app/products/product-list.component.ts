@@ -1,19 +1,21 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Iproduct } from "./product";
 import { ProductService } from "./product.service";
+import { Subscription } from "rxjs";
 
 @Component({
-    selector:'pm-product',
     templateUrl:'./product-list.component.html',
     styleUrls:['./product-list.component.css']
 })
-export class ProductListComponent implements OnInit{
+export class ProductListComponent implements OnInit, OnDestroy{
     PageTitle: string = 'Product List';
     imageWidth: number=50;
     imageMargin: number=2;
     showImage: boolean=false;
     private _listFilter: string=' ';
-    errorMessage: string='';
+    errorMessage ='';
+    sub! :Subscription;
+
     set listFilter(value:string){
         this._listFilter=value;
         console.log('In setter:',value);
@@ -22,6 +24,8 @@ export class ProductListComponent implements OnInit{
     get listFilter():string{
         return this._listFilter;
     }
+
+
     filteredProducts: Iproduct[]=[];
     products : Iproduct[] =[];
     
@@ -31,8 +35,10 @@ export class ProductListComponent implements OnInit{
     toggleImage():void{
         this.showImage=!this.showImage;
     }
+
+
     ngOnInit(): void {
-        this.productService.getProducts().subscribe({
+        this.sub=this.productService.getProducts().subscribe({
             next:products=>{
                 this.products=products;
                 this.filteredProducts=this.products;
@@ -40,6 +46,11 @@ export class ProductListComponent implements OnInit{
             error: err =>this.errorMessage = err
         });
     }
+
+    ngOnDestroy(): void {
+       this.sub.unsubscribe();
+    }
+
     performFilter(filterBy:string):Iproduct[]{
         filterBy=filterBy.toLocaleLowerCase();
         return this.products.filter((product:Iproduct)=>
