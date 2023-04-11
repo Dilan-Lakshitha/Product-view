@@ -13,6 +13,7 @@ export class ProductListComponent implements OnInit{
     imageMargin: number=2;
     showImage: boolean=false;
     private _listFilter: string=' ';
+    errorMessage: string='';
     set listFilter(value:string){
         this._listFilter=value;
         console.log('In setter:',value);
@@ -31,8 +32,13 @@ export class ProductListComponent implements OnInit{
         this.showImage=!this.showImage;
     }
     ngOnInit(): void {
-        this.products=this.productService.getProducts();
-        this.filteredProducts=this.products;
+        this.productService.getProducts().subscribe({
+            next:products=>{
+                this.products=products;
+                this.filteredProducts=this.products;
+            },
+            error: err =>this.errorMessage = err
+        });
     }
     performFilter(filterBy:string):Iproduct[]{
         filterBy=filterBy.toLocaleLowerCase();
