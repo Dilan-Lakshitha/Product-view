@@ -18,7 +18,6 @@ export class ProductListComponent implements OnInit, OnDestroy{
 
     set listFilter(value:string){
         this._listFilter=value;
-        console.log('In setter:',value);
         this.filteredProducts = this.performFilter(value);
     }
     get listFilter():string{
@@ -29,9 +28,7 @@ export class ProductListComponent implements OnInit, OnDestroy{
     filteredProducts: Iproduct[]=[];
     products : Iproduct[] =[];
     
-    constructor(private productService:ProductService ){
-
-    }
+    constructor(private productService:ProductService){}
     toggleImage():void{
         this.showImage=!this.showImage;
     }

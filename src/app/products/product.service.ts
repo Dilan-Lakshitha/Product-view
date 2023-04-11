@@ -7,13 +7,13 @@ import { Observable, catchError, tap, throwError } from "rxjs";
     providedIn:'root'
 })
 export class ProductService{
-    private productUrl ='api/products/products.Json';
+    private productUrl ='api/products/products.json';
 
     constructor(private http:HttpClient){}
 
     getProducts():Observable<Iproduct[]>{
         return this.http.get<Iproduct[]>(this.productUrl).pipe(
-            tap(data =>console.log('ALL',JSON.stringify(data))),
+            tap(data =>console.log('All:',JSON.stringify(data))),
             catchError(this.handleError)
         );
     }
