@@ -5,7 +5,8 @@ import { Subscription } from "rxjs";
 
 @Component({
     templateUrl:'./product-list.component.html',
-    styleUrls:['./product-list.component.css']
+    styleUrls:['./product-list.component.css'],
+    providers:[ProductService]
 })
 export class ProductListComponent implements OnInit, OnDestroy{
     PageTitle: string = 'Product List';

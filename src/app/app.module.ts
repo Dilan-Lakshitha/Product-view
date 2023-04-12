@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 
@@ -8,6 +8,7 @@ import { welcomeComponent } from './home/welcome.component';
 import { RouterModule } from '@angular/router';
 import { ProductDetailGuard } from './products/product-detail.guard';
 import { ProductModule } from './products/product.module';
+import { ProductService } from './products/product.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { ProductModule } from './products/product.module';
     ProductModule
   
   ],
-  providers: [],
+  providers: [ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

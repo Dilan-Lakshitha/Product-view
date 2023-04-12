@@ -3,9 +3,7 @@ import { Iproduct } from "./product";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Observable, catchError, map, tap, throwError } from "rxjs";
 
-@Injectable({
-    providedIn:'root'
-})
+@Injectable()
 export class ProductService{
     getProduct // in a real world app, we may send the server to some remote logging infrastructure
       (id: number): Observable<Iproduct|undefined> {

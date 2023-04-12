@@ -7,7 +7,8 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-products-detail',
   templateUrl: './products-detail.component.html',
-  styleUrls: ['./products-detail.component.css']
+  styleUrls: ['./products-detail.component.css'],
+  providers:[ProductService]
 })
 export class ProductsDetailComponent implements OnInit {
   PageTitle ='Product Details';
