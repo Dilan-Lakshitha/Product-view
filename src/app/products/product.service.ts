@@ -1,12 +1,18 @@
 import { Injectable } from "@angular/core";
 import { Iproduct } from "./product";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { Observable, catchError, tap, throwError } from "rxjs";
+import { Observable, catchError, map, tap, throwError } from "rxjs";
 
 @Injectable({
     providedIn:'root'
 })
 export class ProductService{
+    getProduct // in a real world app, we may send the server to some remote logging infrastructure
+      (id: number): Observable<Iproduct|undefined> {
+        return this.getProducts()
+        .pipe(map((products :Iproduct[])=> products
+        .find(p=>p.productId==id)));
+    }
     private productUrl ='api/products/products.json';
 
     constructor(private http:HttpClient){}

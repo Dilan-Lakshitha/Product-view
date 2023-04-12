@@ -6,5 +6,5 @@ export interface Iproduct{
     description: string;
     price:number;
     starRating: number;
-    imageUrl: String;
+    imageUrl: string;
 }
