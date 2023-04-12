@@ -29,6 +29,7 @@ export class ProductListComponent implements OnInit, OnDestroy{
     products : Iproduct[] =[];
     
     constructor(private productService:ProductService){}
+    
     toggleImage():void{
         this.showImage=!this.showImage;
     }
