@@ -5,6 +5,7 @@ import { ConvertToSpacesPipe } from '../shared/convert-to-spaces.pipe';
 import { RouterModule } from '@angular/router';
 import { ProductDetailGuard } from './product-detail.guard';
 import { SharedModule } from '../shared/shared.module';
+import { ProductService } from './product.service';
 
 
 
@@ -24,6 +25,7 @@ import { SharedModule } from '../shared/shared.module';
       }
     ]),
     SharedModule
-  ]
+  ],
+  providers:[ProductService]
 })
 export class ProductModule { }
